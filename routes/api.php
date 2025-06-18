@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\ContactMessage\ContactMessageController;
 use App\Http\Controllers\Api\Gallery\GalleryController;
