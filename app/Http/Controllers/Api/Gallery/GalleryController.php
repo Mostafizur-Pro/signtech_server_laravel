@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
+
+    public function index()
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'User retrieved successfully',
+            'data' => Gallery::all(),
+        ], 200);
+    }
     public function store(Request $request)
     {
         $request->validate([

@@ -11,8 +11,6 @@ class AuthController extends Controller
 {
     public function index()
     {
-
-
         return response()->json([
             'success' => true,
             'message' => 'User retrieved successfully',
