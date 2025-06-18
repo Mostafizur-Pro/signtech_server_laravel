@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('indoor_type')->nullable();
             $table->string('outdoor_type')->nullable();
+            $table->string('image')->nullable();
 
             $table->json('drawings')->nullable();
             $table->text('remarks')->nullable();

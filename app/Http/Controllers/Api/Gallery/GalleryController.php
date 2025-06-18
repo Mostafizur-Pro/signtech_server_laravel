@@ -50,4 +50,20 @@ class GalleryController extends Controller
             'data'    => $gallery,
         ], 201);
     }
+
+    public function destroy($id)
+    {
+        $user = Gallery::find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => "Gallery not found"
+            ], 404);
+        }
+        $user->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Gallery deleted successfully'
+        ]);
+    }
 }

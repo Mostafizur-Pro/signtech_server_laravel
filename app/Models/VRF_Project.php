@@ -16,6 +16,7 @@ class VRF_Project extends Model
         'client_name',
         'location',
         'brand',
+        'image',
         'capacity',
         'equipment_list',
         'description',
