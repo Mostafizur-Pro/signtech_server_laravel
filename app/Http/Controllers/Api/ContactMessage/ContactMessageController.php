@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class ContactMessageController extends Controller
 {
+    public function index()
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Contact Message retrieved successfully',
+            'data' => ContactMessage::all(),
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         // Validate incoming request
@@ -33,5 +42,20 @@ class ContactMessageController extends Controller
             'message' => 'Message sent successfully!',
             'data'    => $ContactMessage,
         ], 201);
+    }
+    public function destroy($id)
+    {
+        $user = ContactMessage::find($id);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => "Contact Message not found"
+            ], 404);
+        }
+        $user->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Contact Message deleted successfully'
+        ]);
     }
 }

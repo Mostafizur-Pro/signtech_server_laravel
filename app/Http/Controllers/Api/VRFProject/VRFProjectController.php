@@ -69,8 +69,6 @@ class VRFProjectController extends Controller
     }
 
 
-
-
     public function destroy($id)
     {
         $user = VRF_Project::find($id);
