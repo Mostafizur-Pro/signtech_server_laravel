@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('project_name')->nullable();
             $table->string('project_location')->nullable();
             $table->enum('status', ['active', 'inactive', 'archived'])->default('active');

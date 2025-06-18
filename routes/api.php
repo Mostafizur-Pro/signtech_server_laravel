@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Gallery\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,3 +12,5 @@ Route::get('/v1/user', [AuthController::class, 'index']);
 Route::get('/v1/user/{id}', [AuthController::class, 'show']);
 Route::delete('/v1/user/{id}', [AuthController::class, 'destroy']);
 Route::put('/v1/user/{id}', [AuthController::class, 'update']);
+
+Route::post('/v1/gallery', [GalleryController::class, 'store']);
