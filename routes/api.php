@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Categories\CategoriesController;
 use App\Http\Controllers\Api\ContactMessage\ContactMessageController;
 use App\Http\Controllers\Api\Gallery\GalleryController;
 use App\Http\Controllers\Api\VRFProject\VRFProjectController;
@@ -32,3 +33,9 @@ Route::delete('/v1/vrf-project/{id}', [VRFProjectController::class, 'destroy']);
 Route::get('/v1/contact-message', [ContactMessageController::class, 'index']);
 Route::post('/v1/contact-message', [ContactMessageController::class, 'store']);
 Route::delete('/v1/contact-message/{id}', [ContactMessageController::class, 'destroy']);
+
+// Categories
+
+Route::get('/v1/categories', [CategoriesController::class, 'index']);
+Route::post('/v1/categories', [CategoriesController::class, 'store']);
+Route::delete('/v1/categories/{id}', [CategoriesController::class, 'destroy']);
