@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Categories;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+
 
 class CategoriesController extends Controller
 {
@@ -19,21 +19,33 @@ class CategoriesController extends Controller
     }
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|url',
-            'path' => 'required|string|max:255|unique:categories,path',
-            'position' => 'required|string|max:100',
+            'image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'path' => 'required|string',
+            'position' => 'required|string',
             'description' => 'required|string',
-            'type' => 'required|string|max:50',
+            'type' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
         }
 
-        $category = Categories::create($request->all());
-        return response()->json(['message' => 'Category created successfully.', 'data' => $category], 201);
+        $category = Categories::create([
+            'title' => $request->title,
+            'image' => $imagePath,
+            'path' => $request->path,
+            'position' => $request->position,
+            'description' => $request->description,
+            'type' => $request->type,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Categories added successfully',
+            'data'    => $category,
+        ], 201);
     }
 
     public function destroy($id)
