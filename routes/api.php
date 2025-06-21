@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/v1/register', [AuthController::class, 'register']);
+Route::post('/v1/auth/login', [AuthController::class, 'login']);
+Route::get('/v1/auth/user', [AuthController::class, 'me'])->middleware('auth:api');
 
 Route::get('/v1/user', [AuthController::class, 'index']);
 Route::get('/v1/user/{id}', [AuthController::class, 'show']);
