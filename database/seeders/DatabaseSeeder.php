@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'number' => '01950165017',
             'email' => 'test@example.com',
             'password' => '123456',
+            'image' => 'https://avatars.githubusercontent.com/u/108386566?v=4',
             'status' => 'active',
         ]);
     }
