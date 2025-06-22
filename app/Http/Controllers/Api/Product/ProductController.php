@@ -24,12 +24,32 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|max:255',
+            'category' => 'nullable|string',
             'price' => 'required|numeric',
+            'regular_price' => 'nullable|numeric',
+            'size' => 'nullable|string|max:50',
+            'refrigerant' => 'nullable|string|max:100',
+            'general' => 'nullable|string|max:255',
+            'capacity' => 'nullable|string|max:50',
+            'power' => 'nullable|string|max:100',
+            'model' => 'nullable|string|max:100',
+            'unit' => 'nullable|string|max:50',
+            'type' => 'nullable|string|max:100',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // 2MB max
         ]);
 
-        $product = Product::create($request->all());
-        return response()->json($product, 201);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product = Product::create($validated);
+
+        return response()->json([
+            'message' => 'Product created successfully',
+            'data' => $product,
+        ], 201);
     }
     public function update(Request $request, $id)
     {
