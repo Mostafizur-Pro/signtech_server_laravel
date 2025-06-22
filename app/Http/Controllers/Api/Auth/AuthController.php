@@ -25,7 +25,6 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Invalid email or password'], 401);
         }
-        // dd($token); // REMOVE OR COMMENT THIS OUT
 
         return response()->json([
             'token' => $token,
@@ -37,6 +36,13 @@ class AuthController extends Controller
     public function me()
     {
         return response()->json(auth('api')->user());
+    }
+
+    public function logout()
+    {
+        auth('api')->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
     public function register(Request $request)
