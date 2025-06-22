@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Categories\CategoriesController;
 use App\Http\Controllers\Api\ContactMessage\ContactMessageController;
 use App\Http\Controllers\Api\Gallery\GalleryController;
+use App\Http\Controllers\Api\Product\ProductController;
 use App\Http\Controllers\Api\VRFProject\VRFProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,13 @@ Route::delete('/v1/contact-message/{id}', [ContactMessageController::class, 'des
 Route::get('/v1/categories', [CategoriesController::class, 'index']);
 Route::post('/v1/categories', [CategoriesController::class, 'store']);
 Route::delete('/v1/categories/{id}', [CategoriesController::class, 'destroy']);
+
+
+// Product
+Route::prefix('/v1/products')->group(function () {
+    Route::get('/', [ProductController::class, 'index']);
+    Route::post('/', [ProductController::class, 'store']);
+    Route::get('/{id}', [ProductController::class, 'show']);
+    Route::put('/{id}', [ProductController::class, 'update']);
+    Route::delete('/{id}', [ProductController::class, 'destroy']);
+});
