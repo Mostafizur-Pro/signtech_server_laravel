@@ -16,10 +16,18 @@ Route::post('/v1/auth/logout', [AuthController::class, 'logout'])->middleware('a
 Route::post('/v1/auth/login', [AuthController::class, 'login']);
 Route::get('/v1/auth/user', [AuthController::class, 'me'])->middleware('auth:api');
 
-Route::get('/v1/user', [AuthController::class, 'index']);
-Route::get('/v1/user/{id}', [AuthController::class, 'show']);
-Route::delete('/v1/user/{id}', [AuthController::class, 'destroy']);
-Route::put('/v1/user/{id}', [AuthController::class, 'update']);
+Route::prefix('/v1/user')->group(function () {
+    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/{id}', [AuthController::class, 'show']);
+    Route::delete('/{id}', [AuthController::class, 'destroy']);
+    Route::put('/{id}', [AuthController::class, 'update']);
+});
+
+// Route::get('/v1/user', [AuthController::class, 'index']);
+// Route::get('/v1/user/{id}', [AuthController::class, 'show']);
+// Route::delete('/v1/user/{id}', [AuthController::class, 'destroy']);
+// Route::put('/v1/user/{id}', [AuthController::class, 'update']);
+
 
 // Gallery 
 
@@ -57,3 +65,23 @@ Route::prefix('/v1/products')->group(function () {
     Route::put('/{id}', [ProductController::class, 'update']);
     Route::delete('/{id}', [ProductController::class, 'destroy']);
 });
+
+
+/*
+CAC
+Wind-free
+4-way
+cooling only
+r-410A
+inverter
+indoor unit
+
+selling price: 96000
+regular price : 102500
+size: 2.0 tr
+
+image max 5 nos
+
+
+
+*/
