@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Categories\CategoriesController;
 use App\Http\Controllers\Api\ContactMessage\ContactMessageController;
 use App\Http\Controllers\Api\Gallery\GalleryController;
 use App\Http\Controllers\Api\Product\ProductController;
+use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\VRFProject\VRFProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,13 @@ Route::prefix('/v1/user')->group(function () {
 // Route::delete('/v1/user/{id}', [AuthController::class, 'destroy']);
 // Route::put('/v1/user/{id}', [AuthController::class, 'update']);
 
+<<<<<<< HEAD
+=======
+Route::get('/v1/user', [UserController::class, 'index']);
+Route::get('/v1/user/{id}', [UserController::class, 'show']);
+Route::delete('/v1/user/{id}', [UserController::class, 'destroy']);
+Route::put('/v1/user/{id}', [UserController::class, 'update']);
+>>>>>>> ddd8f67 (categories page work)
 
 // Gallery 
 

@@ -18,5 +18,6 @@ class Categories extends Model
         'position',
         'description',
         'type',
+        'status',
     ];
 }
