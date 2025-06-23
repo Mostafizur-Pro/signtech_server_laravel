@@ -33,15 +33,28 @@ class AuthController extends Controller
     }
 
 
-    public function me()
+    // public function me()
+    // {
+    //     return response()->json(auth('api')->user());
+    // }
+    public function profile(Request $request)
     {
-        return response()->json(auth('api')->user());
-    }
+        $token = $request->bearerToken();
 
+        $user = auth('api')->user();
+
+
+
+
+        return response()->json([
+            'token_used' => $token,
+            'user' => $user,
+        ]);
+    }
     public function logout()
     {
+        dd("dat");
         auth('api')->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 

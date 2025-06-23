@@ -14,7 +14,8 @@ Route::post('/v1/auth/logout', [AuthController::class, 'logout'])->middleware('a
 
 
 Route::post('/v1/auth/login', [AuthController::class, 'login']);
-Route::get('/v1/auth/user', [AuthController::class, 'me'])->middleware('auth:api');
+// Route::get('/v1/auth/user', [AuthController::class, 'me'])->middleware('auth:api');
+Route::get('/v1/auth/user', [AuthController::class, 'profile'])->middleware('auth:api');
 
 Route::prefix('/v1/user')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
