@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class UserController extends Controller
 {

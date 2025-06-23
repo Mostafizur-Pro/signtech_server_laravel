@@ -13,12 +13,9 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Invalid email or password'], 401);
         }
-
-
         return response()->json([
             'token' => $token,
             'user' => auth('api')->user(),
@@ -26,29 +23,32 @@ class AuthController extends Controller
     }
 
 
-<<<<<<< HEAD
-    // public function me()
-    // {
-    //     return response()->json(auth('api')->user());
-    // }
-    public function profile(Request $request)
-=======
 
-    public function me()
->>>>>>> ddd8f67 (categories page work)
+    public function me($request)
     {
         $token = $request->bearerToken();
-
         $user = auth('api')->user();
-
-
-
-
         return response()->json([
             'token_used' => $token,
             'user' => $user,
         ]);
     }
+    public function profile(Request $request)
+    {
+        $user = auth('api')->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        return response()->json([
+            'token_used' => $request->bearerToken(),
+            'user' => $user,
+        ]);
+    }
+
     public function logout()
     {
         dd("dat");
