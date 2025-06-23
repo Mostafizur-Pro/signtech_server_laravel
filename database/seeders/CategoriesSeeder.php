@@ -60,7 +60,7 @@ class CategoriesSeeder extends Seeder
             [
                 'title' => 'Ceiling-Mounted',
                 'description' => '',
-                'path' => '/products/wall-mounted',
+                'path' => '/products/ceiling-mounted',
                 'position' => 2,
                 'image' => 'categories/ceiling.png',
                 'type' => 'Indoor',
