@@ -19,32 +19,34 @@ class CategoriesController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
+        // Validate the request
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'path' => 'required|string',
-            'position' => 'required|string',
-            'description' => 'required|string',
-            'type' => 'required|string',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'path' => 'required|string|max:255',
+            'position' => 'required|integer',
+            'description' => 'nullable|string',
+            'type' => 'required|string|max:100',
+            'status' => 'required|in:active,inactive,archived',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('categories', 'public');
-        }
+        // Store the uploaded image
+        $imagePath = $request->file('image')->store('categories', 'public');
 
+        // Save to database
         $category = Categories::create([
-            'title' => $request->title,
+            'title' => $validated['title'],
             'image' => $imagePath,
-            'path' => $request->path,
-            'position' => $request->position,
-            'description' => $request->description,
-            'type' => $request->type,
+            'path' => $validated['path'],
+            'position' => $validated['position'],
+            'description' => $validated['description'] ?? null,
+            'type' => $validated['type'],
+            'status' => $validated['status'],
         ]);
 
         return response()->json([
-            'success' => true,
-            'message' => 'Categories added successfully',
-            'data'    => $category,
+            'message' => 'Category created successfully.',
+            'category' => $category
         ], 201);
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('position');
             $table->string('description');
             $table->string('type');
+            $table->enum('status', ['active', 'inactive', 'archived']);
             $table->timestamps();
         });
     }

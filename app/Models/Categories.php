@@ -13,11 +13,17 @@ class Categories extends Model
 
     protected $fillable = [
         'title',
-        'image',
+        'description',
         'path',
         'position',
-        'description',
+        'image',
         'type',
         'status',
     ];
+
+
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->image);
+    }
 }

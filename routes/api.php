@@ -25,18 +25,12 @@ Route::prefix('/v1/user')->group(function () {
     Route::put('/{id}', [AuthController::class, 'update']);
 });
 
-// Route::get('/v1/user', [AuthController::class, 'index']);
-// Route::get('/v1/user/{id}', [AuthController::class, 'show']);
-// Route::delete('/v1/user/{id}', [AuthController::class, 'destroy']);
-// Route::put('/v1/user/{id}', [AuthController::class, 'update']);
 
-<<<<<<< HEAD
-=======
 Route::get('/v1/user', [UserController::class, 'index']);
 Route::get('/v1/user/{id}', [UserController::class, 'show']);
 Route::delete('/v1/user/{id}', [UserController::class, 'destroy']);
 Route::put('/v1/user/{id}', [UserController::class, 'update']);
->>>>>>> ddd8f67 (categories page work)
+
 
 // Gallery 
 
