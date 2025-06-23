@@ -22,21 +22,29 @@ class CategoriesController extends Controller
         // Validate the request
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'path' => 'required|string|max:255',
-            'position' => 'required|integer',
+            'position' => 'nullable|integer',
             'description' => 'nullable|string',
             'type' => 'required|string|max:100',
             'status' => 'required|in:active,inactive,archived',
         ]);
 
+
+
         // Store the uploaded image
-        $imagePath = $request->file('image')->store('categories', 'public');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
+        }
+
+
+        // dd($imagePath);
 
         // Save to database
         $category = Categories::create([
             'title' => $validated['title'],
-            'image' => $imagePath,
+            'image' => $imagePath ?? null,
             'path' => $validated['path'],
             'position' => $validated['position'],
             'description' => $validated['description'] ?? null,
