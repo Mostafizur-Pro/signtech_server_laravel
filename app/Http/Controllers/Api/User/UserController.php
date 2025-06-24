@@ -55,22 +55,19 @@ class UserController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        dd($validated);
+
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('uploads/users');
 
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            $image->move($destinationPath, $imageName);
-            $validated['image'] = url('uploads/users/' . $imageName);
+            // Store new image
+            $imagePath = $request->file('image')->store('users', 'public');
+            $validated['image'] = $imagePath;
         }
 
         if (!empty($validated['password'])) {
             $validated['password'] = bcrypt($validated['password']);
         }
+
 
         $user->update($validated);
 
