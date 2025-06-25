@@ -25,7 +25,6 @@ class Product extends Model
         'panel_model',
         'panel_type',
         'panel_color',
-        'machine_type',
         'regular_price',
         'offer_price',
         'inverter_type',
@@ -52,7 +51,7 @@ Size_d:840
 panel_Model: PC4NUFMAN
 Panel_Type: Wind-Free Type
 panel_color: white/black
-machine_type: indoor/Outdoor
+// machine_type: indoor/Outdoor
 // indoor_type: cassete, duct, 360 cassette
 Size: 1.25, 2.0 tr
 regular_price: 210600

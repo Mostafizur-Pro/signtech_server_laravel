@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('panel_model')->nullable();
             $table->string('panel_type')->nullable();
             $table->string('panel_color')->nullable();
-            $table->string('machine_type'); // indoor/outdoor
             $table->string('regular_price');
             $table->string('offer_price');
             $table->string('inverter_type'); //interter /non inverter
