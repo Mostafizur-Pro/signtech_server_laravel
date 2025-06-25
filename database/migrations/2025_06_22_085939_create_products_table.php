@@ -13,19 +13,30 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category')->nullable();
-            $table->decimal('price', 8, 2);
-            $table->decimal('regular_price', 8, 2)->nullable();
-            $table->string('size')->nullable();
+            $table->string('model');
+            $table->string('cooling_kw');
+            $table->integer('cooling_btu');
+            $table->string('cooling_tr');
+            $table->integer('power_input_w')->nullable();
+            $table->string('air_flow_high_cfm')->nullable();
+            $table->string('air_flow_medium_cfm')->nullable();
+            $table->string('air_flow_low_cfm')->nullable();
             $table->string('refrigerant')->nullable();
-            $table->string('general')->nullable();
-            $table->string('capacity')->nullable();
-            $table->string('power')->nullable();
-            $table->string('model')->nullable();
-            $table->string('unit')->nullable();
-            $table->string('type')->nullable();
-            $table->text('image')->nullable();
+            $table->integer('size_width_mm')->nullable();
+            $table->integer('size_height_mm')->nullable();
+            $table->integer('size_depth_mm')->nullable();
+            $table->string('panel_model')->nullable();
+            $table->string('panel_type')->nullable();
+            $table->string('panel_color')->nullable();
+            $table->string('machine_type'); // indoor/outdoor
+            $table->string('indoor_types_supported'); // cassette, duct, etc.
+            $table->string('regular_price');
+            $table->string('offer_price');
+            $table->string('inverter_type'); //interter /non inverter
+            $table->string('category');
+            $table->string('image_1')->nullable();
+            $table->string('image_2')->nullable();
+            $table->string('image_3')->nullable();
             $table->timestamps();
         });
     }

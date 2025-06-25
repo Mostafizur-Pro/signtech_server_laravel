@@ -10,19 +10,30 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'category',
-        'price',
-        'regular_price',
-        'size',
-        'refrigerant',
-        'general',
-        'capacity',
-        'power',
         'model',
-        'unit',
-        'type',
-        'image'
+        'cooling_kw',
+        'cooling_btu',
+        'cooling_tr',
+        'power_input_w',
+        'air_flow_high_cfm',
+        'air_flow_medium_cfm',
+        'air_flow_low_cfm',
+        'refrigerant',
+        'size_width_mm',
+        'size_height_mm',
+        'size_depth_mm',
+        'panel_model',
+        'panel_type',
+        'panel_color',
+        'machine_type',
+        'indoor_types_supported',
+        'regular_price',
+        'offer_price',
+        'inverter_type',
+        'category',
+        'image_1',
+        'image_2',
+        'image_3'
     ];
 }
 
