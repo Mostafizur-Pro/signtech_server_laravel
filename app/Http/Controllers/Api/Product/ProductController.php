@@ -29,7 +29,6 @@ class ProductController extends Controller
             'cooling_btu' => 'required|integer',
             'cooling_tr' => 'required|string',
             'machine_type' => 'required|string',
-            'indoor_types_supported' => 'required|string',
             'regular_price' => 'required|string',
             'offer_price' => 'required|string',
             'inverter_type' => 'required|string',

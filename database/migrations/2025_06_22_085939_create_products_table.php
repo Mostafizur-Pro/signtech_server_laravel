@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('panel_type')->nullable();
             $table->string('panel_color')->nullable();
             $table->string('machine_type'); // indoor/outdoor
-            $table->string('indoor_types_supported'); // cassette, duct, etc.
             $table->string('regular_price');
             $table->string('offer_price');
             $table->string('inverter_type'); //interter /non inverter
