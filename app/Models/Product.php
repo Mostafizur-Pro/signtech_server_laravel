@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'model',
+        'title',
         'cooling_kw',
         'cooling_btu',
         'cooling_tr',

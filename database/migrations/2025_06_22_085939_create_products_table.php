@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cooling_kw');
             $table->integer('cooling_btu');
             $table->string('cooling_tr');
-            $table->integer('power_input_w')->nullable();
+            $table->string('power_input_w')->nullable();
             $table->string('air_flow_high_cfm')->nullable();
             $table->string('air_flow_medium_cfm')->nullable();
             $table->string('air_flow_low_cfm')->nullable();
