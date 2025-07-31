@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('model');
+            $table->string('title');
             $table->string('cooling_kw');
             $table->integer('cooling_btu');
             $table->string('cooling_tr');
