@@ -25,17 +25,14 @@
         <form action="{{ url('/login') }}" method="POST" class="space-y-4">
             @csrf
 
-            <!-- Email & Password Row -->
-            <div class="flex flex-wrap -mx-2">
-                <div class="w-full md:w-1/2 px-2 mb-4">
-                    <label class="block mb-1 font-medium text-gray-700">Email</label>
-                    <input type="email" name="email" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" required>
-                </div>
+            <div>
+                <label class="block mb-1 font-medium text-gray-700">Email</label>
+                <input type="email" name="email" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" required>
+            </div>
 
-                <div class="w-full md:w-1/2 px-2 mb-4">
-                    <label class="block mb-1 font-medium text-gray-700">Password</label>
-                    <input type="password" name="password" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
-                </div>
+            <div>
+                <label class="block mb-1 font-medium text-gray-700">Password</label>
+                <input type="password" name="password" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
             </div>
 
             <!-- Remember Me -->
@@ -44,22 +41,18 @@
                 <label for="remember" class="text-gray-700 text-sm">Remember Me</label>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="w-full bg-blue-600 text-white font-semibold p-2 rounded hover:bg-blue-700 transition duration-200">
                 Login
             </button>
 
-            <!-- Optional Links -->
             <div class="text-center mt-4 text-sm">
                 <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
             </div>
 
-            <!-- Register Link -->
             <div class="text-center mt-2 text-sm">
                 Don't have an account? 
                 <a href="{{ url('/register') }}" class="text-blue-600 hover:underline">Register</a>
             </div>
-
         </form>
     </div>
 </div>
