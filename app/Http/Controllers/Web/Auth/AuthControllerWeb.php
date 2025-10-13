@@ -7,39 +7,69 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Session;
 
 class AuthControllerWeb extends Controller
 {
 
-    public function index()
+   public function index()
     {
-        return view('Auth/login');
+        return view('Auth.login');
     }
 
-     public function login(Request $request)
+    // Show registration page
+    public function registerForm()
+    {
+        return view('Auth.register');
+    }
+
+    // Handle login
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
+        $user = User::where('email', $credentials['email'])->first();
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            // Store user session
+            Session::put('user_id', $user->id);
+            Session::put('user_name', $user->name);
+            Session::put('user_email', $user->email);
+
+            return redirect('/dashboard')->with('success', 'Login Successful!');
+        } else {
+            return back()->with('fail', 'Invalid login credentials!');
+        }
     }
 
+    // Handle logout
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
+        Session::flush();
+        return redirect('/login')->with('success', 'Logged out successfully.');
     }
+
+    // Dashboard
+    public function dashboard()
+    {
+        if (!Session::has('user_id')) {
+            return redirect('/login')->with('fail', 'You must log in first.');
+        }
+
+        $user = [
+            'name' => Session::get('user_name'),
+            'email' => Session::get('user_email'),
+        ];
+
+        return view('dashboard/dashboard', compact('user'));
+    }
+
+
+
 
    
 }

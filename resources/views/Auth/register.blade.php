@@ -53,23 +53,12 @@
                 <input type="password" name="password" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
             </div>
 
-            <!-- Image URL -->
-            <div>
-                <label class="block mb-1 font-medium text-gray-700">Image URL</label>
-                <input type="url" name="image" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter profile image URL">
-            </div>
+       
 
-            <!-- Status -->
-            <div>
-                <label class="block mb-1 font-medium text-gray-700">Status</label>
-                <select name="status" class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="active" selected>Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
+           
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full bg-green-600 text-white font-semibold p-2 rounded hover:bg-green-700 transition duration-200">
+            <button type="submit" class="w-full bg-blue-600 text-white font-semibold p-2 rounded hover:bg-blue-700 transition duration-200">
                 Register
             </button>
 
