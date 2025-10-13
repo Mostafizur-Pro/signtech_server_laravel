@@ -53,20 +53,7 @@ class AuthControllerWeb extends Controller
         return redirect('/login')->with('success', 'Logged out successfully.');
     }
 
-    // Dashboard
-    public function dashboard()
-    {
-        if (!Session::has('user_id')) {
-            return redirect('/login')->with('fail', 'You must log in first.');
-        }
-
-        $user = [
-            'name' => Session::get('user_name'),
-            'email' => Session::get('user_email'),
-        ];
-
-        return view('dashboard/dashboard', compact('user'));
-    }
+    
 
 
 

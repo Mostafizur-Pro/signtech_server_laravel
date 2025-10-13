@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Auth\AuthControllerWeb;
+use App\Http\Controllers\Web\DashboardController;
 
 
 
@@ -11,9 +12,15 @@ Route::post('/login', [AuthControllerWeb::class, 'login']);
 
 Route::get('/register', [AuthControllerWeb::class, 'registerForm'])->name('register.form');
 
-Route::get('/dashboard', [AuthControllerWeb::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+
 
 
 // Route::get('/', function () {
