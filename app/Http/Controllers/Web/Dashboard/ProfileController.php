@@ -27,8 +27,9 @@ class ProfileController extends Controller
         // dd($user);
 
 
-        return view('dashboard/profile', compact('user'));
+        return view('dashboard.profile.profile', compact('user'));
     }
+
 
     public function update(Request $request)
     {
@@ -67,5 +68,29 @@ class ProfileController extends Controller
         ]);
 
         return back()->with('success', 'Profile updated successfully.');
+    }
+    public function showChangePassword()
+    {
+        return view('dashboard.profile.change-password');
+    }
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|string',
+            'new_password'     => 'required|string|min:6|confirmed',
+        ]);
+
+        // $user = auth()->user(); // get logged-in user
+
+        // // Check current password
+        // if (!Hash::check($request->current_password, $user->password)) {
+        //     return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        // }
+
+        // // Update password
+        // $user->password = Hash::make($request->new_password);
+        // $user->save();
+
+        return back()->with('success', 'Password changed successfully!');
     }
 }

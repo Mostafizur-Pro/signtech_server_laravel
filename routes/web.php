@@ -18,6 +18,8 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/change-password', [ProfileController::class, 'showChangePassword'])->name('change-password');
+Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('change-password.update');
 
 
 Route::get('/qr-generator', [QRController::class, 'index'])->name('qr.generator');
