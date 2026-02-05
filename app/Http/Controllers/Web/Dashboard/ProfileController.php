@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Session;
 
 class ProfileController extends Controller
@@ -80,16 +81,23 @@ class ProfileController extends Controller
             'new_password'     => 'required|string|min:6|confirmed',
         ]);
 
-        // $user = auth()->user(); // get logged-in user
 
-        // // Check current password
-        // if (!Hash::check($request->current_password, $user->password)) {
-        //     return back()->withErrors(['current_password' => 'Current password is incorrect.']);
-        // }
+        // Get user ID from session
+        $userId = Session::get('user_id');
+
+        // Find the user in the database
+        $user = User::find($userId);
+
+
+        // Check current password
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+        // dd($user);
 
         // // Update password
-        // $user->password = Hash::make($request->new_password);
-        // $user->save();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
 
         return back()->with('success', 'Password changed successfully!');
     }
