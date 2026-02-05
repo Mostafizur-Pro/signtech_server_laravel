@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-xl p-5">
-                    <p class="text-sm text-gray-500 mb-1">Phone</p>
+                    <p class="text-sm text-gray-500 mb-1">Number</p>
                     <p class="text-gray-800 font-medium">
                         {{ Session::get('user_number') ?? 'Not Provided' }}
                     </p>
@@ -124,9 +124,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm text-gray-600 mb-1">Phone</label>
+                    <label class="block text-sm text-gray-600 mb-1">Number</label>
                     <input type="text"
-                        name="phone"
+                        name="number"
                         value="{{ Session::get('user_number') }}"
                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>

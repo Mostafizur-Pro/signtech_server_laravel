@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       const openBtn = document.getElementById('open-sidebar');
       const closeBtn = document.getElementById('close-sidebar');
       const sidebar = document.getElementById('sidebar');
@@ -44,7 +45,10 @@
       });
     });
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
+
 <body class="bg-gray-100 font-sans">
 
   <div class="flex h-screen overflow-hidden">
@@ -62,30 +66,39 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-6 space-y-2">
-          <a href="/dashboard" class="flex items-center px-5 py-2 hover:bg-gray-700 rounded transition {{ Request::is('dashboard') ? 'bg-gray-700' : '' }}">
-            <span class="ml-2">🏠 Dashboard</span>
+          <a href="/dashboard" class="flex items-center px-3 py-2 hover:bg-gray-700 rounded transition {{ Request::is('dashboard') ? 'bg-gray-700' : '' }}">
+            <span class="ml-2"><i class="fa-solid fa-house"></i> Dashboard</span>
           </a>
 
-          <a href="/profile" class="flex items-center px-5 py-2 hover:bg-gray-700 rounded transition {{ Request::is('profile') ? 'bg-gray-700' : '' }}">
-            <span class="ml-2">👤 Profile</span>
-          </a>
-
-          <!-- Settings Dropdown -->
+          <!-- Profile Dropdown -->
           <div x-data="{ open: false }" class="px-5">
             <button @click="open = !open" class="w-full flex items-center justify-between py-2 hover:bg-gray-700 rounded transition focus:outline-none">
-              <span>⚙️ Settings</span>
+              <span><i class="fa-solid fa-address-card"></i> Profile</span>
               <span x-text="open ? '▾' : '▸'"></span>
             </button>
             <div x-show="open" class="mt-1 ml-4 space-y-1" x-cloak>
-              <a href="/basic" class="block px-3 py-1 hover:bg-gray-700 rounded transition">📄 Basic</a>
-              <a href="/qr-generator" class="block px-3 py-1 hover:bg-gray-700 rounded transition">📁 QR Generator</a>
+              <a href="/profile" class="block px-3 py-1 hover:bg-gray-700 rounded transition"><i class="fas fa-user"></i> Profile</a>
+              <a href="/change-password" class="block px-3 py-1 hover:bg-gray-700 rounded transition"> <i class="fas fa-lock"></i> Change Password</a>
             </div>
           </div>
+          <!-- Settings Dropdown -->
+          <div x-data="{ open: false }" class="px-5">
+            <button @click="open = !open" class="w-full flex items-center justify-between py-2 hover:bg-gray-700 rounded transition focus:outline-none">
+              <span><i class="fa-solid fa-gear"></i> Settings</span>
+              <span x-text="open ? '▾' : '▸'"></span>
+            </button>
+            <div x-show="open" class="mt-1 ml-4 space-y-1" x-cloak>
+              <a href="/basic" class="block px-3 py-1 hover:bg-gray-700 rounded transition"><i class="fa-solid fa-font-awesome"></i> Basic</a>
+              <!-- <a href="/qr-generator" class="block px-3 py-1 hover:bg-gray-700 rounded transition">📁 QR Generator</a> -->
+              <a href="/user-role" class="block px-3 py-1 hover:bg-gray-700 rounded transition"><i class="fa-solid fa-person-circle-exclamation"></i> User Role</a>
+            </div>
 
-          <form action="{{ route('logout') }}" method="POST" class="px-5 mt-2">
+          </div>
+
+          <form action="{{ route('logout') }}" method="POST" class="px-3 mt-2">
             @csrf
             <button type="submit" class="w-full text-left flex items-center py-2 hover:bg-red-600 rounded transition">
-              <span class="ml-2">🚪 Logout</span>
+              <span class="ml-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</span>
             </button>
           </form>
         </nav>
@@ -156,4 +169,5 @@
   </div>
 
 </body>
+
 </html>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class ProfileController extends Controller
@@ -27,21 +29,42 @@ class ProfileController extends Controller
 
         return view('dashboard/profile', compact('user'));
     }
+
     public function update(Request $request)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'  => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'nullable|string|max:20',
+            'number' => 'nullable|string|max:20', // match your User model
         ]);
+
+        // dd($request);
+
+
+        // Get user ID from session
+        $userId = Session::get('user_id');
+
+        // Find the user in the database
+        $user = User::find($userId);
+
+        if (!$user) {
+            return redirect()->back()->with('fail', 'User not found.');
+        }
+
+        // Update user data
+        $user->name   = $request->name;
+        $user->email  = $request->email;
+        $user->number = $request->number; // note: using 'number' not 'phone'
+
+        $user->save(); // Save changes to database
 
         // Update session values
         session([
-            'user_name' => $request->name,
-            'user_email' => $request->email,
-            'user_number' => $request->phone,
+            'user_name'   => $user->name,
+            'user_email'  => $user->email,
+            'user_number' => $user->number,
         ]);
-        dd($user);
 
         return back()->with('success', 'Profile updated successfully.');
     }
