@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Auth\AuthControllerWeb;
 use App\Http\Controllers\Web\Dashboard\DashboardController;
 use App\Http\Controllers\Web\Dashboard\ProfileController;
+use App\Http\Controllers\Web\Dashboard\UserRoleController;
 use App\Http\Controllers\Web\QRController;
 
 
@@ -20,6 +21,10 @@ Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 Route::get('/change-password', [ProfileController::class, 'showChangePassword'])->name('change-password');
 Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('change-password.update');
+
+Route::get('/user-role', [UserRoleController::class, 'index'])->name('users.index');
+Route::post('/users/{user}/role', [UserRoleController::class, 'updateRole'])->name('users.updateRole');
+
 
 
 Route::get('/qr-generator', [QRController::class, 'index'])->name('qr.generator');
