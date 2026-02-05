@@ -18,21 +18,9 @@ class DashboardController extends Controller
         $user = [
             'name' => Session::get('user_name'),
             'email' => Session::get('user_email'),
+            'number' => Session::get('user_number'),
         ];
 
         return view('dashboard/dashboard', compact('user'));
-    }
-    public function profile()
-    {
-        if (!Session::has('user_id')) {
-            return redirect('/login')->with('fail', 'You must log in first.');
-        }
-
-        $user = [
-            'name' => Session::get('user_name'),
-            'email' => Session::get('user_email'),
-        ];
-
-        return view('dashboard/profile', compact('user'));
     }
 }

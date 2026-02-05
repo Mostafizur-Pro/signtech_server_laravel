@@ -13,7 +13,7 @@ use Session;
 class AuthControllerWeb extends Controller
 {
 
-   public function index()
+    public function index()
     {
         return view('Auth.login');
     }
@@ -39,6 +39,7 @@ class AuthControllerWeb extends Controller
             Session::put('user_id', $user->id);
             Session::put('user_name', $user->name);
             Session::put('user_email', $user->email);
+            Session::put('user_number', $user->number);
 
             return redirect('/dashboard')->with('success', 'Login Successful!');
         } else {
@@ -52,11 +53,4 @@ class AuthControllerWeb extends Controller
         Session::flush();
         return redirect('/login')->with('success', 'Logged out successfully.');
     }
-
-    
-
-
-
-
-   
 }
