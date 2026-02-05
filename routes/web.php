@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Auth\AuthControllerWeb;
-use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Dashboard\DashboardController;
 use App\Http\Controllers\Web\QRController;
 
 
@@ -20,7 +20,7 @@ Route::get('/profile', [DashboardController::class, 'profile'])->name('profile')
 Route::get('/qr-generator', [QRController::class, 'index'])->name('qr.generator');
 Route::post('/qr-generator', [QRController::class, 'generate'])->name('qr.generate');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthControllerWeb::class, 'logout'])->name('logout');
 
 
 
@@ -52,4 +52,3 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::post('/login', [AuthControllerWeb::class, 'login'])->name('login');
 
 // Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
-

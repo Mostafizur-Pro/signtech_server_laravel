@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -24,7 +24,10 @@ class DashboardController extends Controller
     }
     public function profile()
     {
-       
+        if (!Session::has('user_id')) {
+            return redirect('/login')->with('fail', 'You must log in first.');
+        }
+
         $user = [
             'name' => Session::get('user_name'),
             'email' => Session::get('user_email'),
